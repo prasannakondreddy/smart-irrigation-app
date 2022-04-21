@@ -1,0 +1,166 @@
+
+
+Apache
+vm/vps
+remote server
+wsgi
+setup ref(flask) - https://www.youtube.com/watch?v=YFBRVJPhDGY
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+db todo flask ref - https://www.digitalocean.com/community/tutorials/build-a-crud-web-app-with-python-and-flask-part-one
+
+kill already in use port - $ sudo kill -9 `sudo lsof -t -i:3002`
+
+var/www/getDataApp
+secret key -OUR1234
+
+disk space : $ df -h
+
+error= var/log/apache2/errorlog
+
+navigate to newApp
+ $ source myenv/bin/activate
+ $ export FLASK_APP=hello.py
+ $ flask run --host=0.0.0.0
+
+deactivate - to come out of venv
+
+<VirtualHost *:80>
+		ServerName 143.244.128.72
+		ServerAdmin admin@mywebsite.com
+		WSGIScriptAlias / /var/www/ourApp/ourapp.wsgi
+		<Directory /var/www/ourApp/ourApp/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/ourApp/ourApp/static
+		<Directory /var/www/ourApp/ourApp/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+debian architecture?!
+
+ph no. - +14785882107
+
+mongod
+mongo
+navigate to newApp
+ $ source myenv/bin/activate
+ $ export FLASK_APP=__init__.py
+ $ flask run --host=0.0.0.0
+export TWILIO_ACCOUNT_SID=ACaac7876c9dd88571de990f5b39525293
+export TWILIO_AUTH_TOKEN=0e360095573216920584fd6889182934
+
+source myenv/bin/activate;export FLASK_APP=__init__.py;flask run --host=0.0.0.0
+
+
+
+
+
+
+
+from flask import Flask
+from flask import jsonify,request
+from pip._vendor import requests
+from flask_pymongo import PyMongo
+from bson.json_util import dumps
+from bson.objectid import ObjectId
+import os
+from twilio.rest import Client
+import json
+
+app = Flask(__name__)
+app.secret_key="secretkey"
+app.config['MONGO_URI']="mongodb://localhost:27017/our"
+mongo = PyMongo(app)
+key="STL47icGAl6RFMPwyoRexeRl34uLnzdZ"
+
+@app.route('/getSavedData',methods=['GET'])
+
+def getDatafromdb():
+    cursor=mongo.db.our.find()
+    Dict={"day":[],"temp":[]}
+    for data in cursor:
+        print(data)
+    for data in cursor:
+        Dict["day"].append(data['_day'])
+        Dict["temp"].append(data['temperature'])
+    print(Dict)
+    return Dict
+
+
+@app.route('/getdata', methods=['GET'])
+
+
+def index():
+    locKeyReq=requests.get('https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey='+key+'&q=28%2C77')
+    locdata=json.loads(locKeyReq.content)
+    locKey=locdata['Key']
+
+    req=requests.get('http://dataservice.accuweather.com/currentconditions/v1/'+locKey+'?apikey='+key+'&details=true')
+    data=json.loads(req.content)
+    temp=data[0]['Temperature']['Metric']['Value']
+    precipitation=data[0]['PrecipitationSummary']['Precipitation']['Metric']['Value']
+    humidity=data[0]['RelativeHumidity']
+    uvIndex=data[0]['UVIndex']
+
+    day=-1
+
+
+    if(mongo.db.our.find_one({"day":0}) or mongo.db.our.find_one({"day":1})!=NULL):
+
+        boo=mongo.db.our.find({"_day":{ "$exists": "True"}}) 
+        for doc in boo:
+            day=day+1
+
+
+    mongo.db.our.insert_one({"_day":day,"temperature":temp,"uv":uvIndex,"humidity":humidity,"precipitation":precipitation})
+    
+    dispData=data
+    print(data['Temperature'])
+
+    if (temp>20):
+         account_sid = os.environ['TWILIO_ACCOUNT_SID']
+         auth_token = os.environ['TWILIO_AUTH_TOKEN']
+         client = Client(account_sid, auth_token)
+    
+         message = client.messages \
+                         .create(
+                          body="Alert! The temperature is "+str(temp),
+                          from_='+14785882107',
+                          to='+918341885927'                       )
+
+         print(message.sid)
+        
+    
+    data={'temp':temp,'precipitation':precipitation,'humidity':humidity,'uvIndex':uvIndex}
+    return data,200
+    
+
+15/2/22
+
+DJANGO
+
+windows
+pip install django
+open folder
+django-admin startproject our(creates project)
+python manage.py runserver
+(learn abt mvt)
+urls.py(of the project i.e our)
+now we need to create apps
+python manage.py startapp home
+create urls.py in home
+*
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('home.urls'))
+]
+*---->in urls.py of our so that all the requests are mapped to urls.py inside home
+
+
+

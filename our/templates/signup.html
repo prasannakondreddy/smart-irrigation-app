@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>user registration</title>
+    {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
+  </head>
+  <body>
+    
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p>{{error}}</p>
+            {%endfor%}
+        {% endif %}
+        {% for fm in form %}
+         {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+        {% endfor %}
+        
+        <input type="submit" value="Submit">
+    </form>
+    {% if messages %}
+    {% for message in messages %}
+     <small {% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'login' %} ">login</a>
+	{% comment %} <script src="index.js"></script> {% endcomment %}
+  </body>
+</html>

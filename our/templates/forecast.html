@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block title%}Forecast{% endblock title%}
+{% block body%}
+<div class='d-flex justify-content-center mt-5'>
+    <br />
+    <br />
+    <br />
+    <Card class='card'>
+       
+            <h1 class='p-4 d-flex justify-content-center'>Today's Forecast</h1>
+            <div class='p-2 d-flex justify-content-center'>Temperature - {{temp}}</div>
+            <div class='p-2 d-flex justify-content-center'>Humidity - {{humidity}}</div>
+            <div class='p-2 d-flex justify-content-center'>Precipitation - {{precipitation}}</div>
+            <div class='p-2 d-flex justify-content-center'>UV Index - {{uvIndex}}</div>
+        
+    </Card>
+
+
+</div>
+{% endblock body%}

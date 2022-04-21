@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+{% block title%}schedule{% endblock title%}
+{% block body%}
+<div >
+    <br /><br /><br />
+    <div class='box'>
+    <ul class="flex-container heading">
+        <li class="flex-item mt-4">Mode</li>
+        <li class="flex-item mt-4">Schedule Date</li>
+        <li class="flex-item mt-4">Set Threshold level to start irrigation</li>
+        <li class="flex-item mt-4">Set Threshold level to stop irrigation</li>
+
+    </ul>
+    
+    
+    <ul class="flex-container">
+        <li class="flex-item">
+            
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mode
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Auto</a>
+                  <a class="dropdown-item" href="#">Manual</a>
+                  
+                </div>
+              </div>
+        </li>
+        <li class="flex-item">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Day
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Today</a>
+                  <a class="dropdown-item" href="#">Tomorrow</a>
+                  
+                </div>
+              </div>
+           
+        </li>
+        <li class="flex-item">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Start
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">1</a>
+                  <a class="dropdown-item" href="#">2</a>
+                  <a class="dropdown-item" href="#">3</a>
+                </div>
+              </div>
+        </li>
+        <li class="flex-item">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Stop
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">1</a>
+                  <a class="dropdown-item" href="#">2</a>
+                  <a class="dropdown-item" href="#">3</a>
+                </div>
+              </div>
+        </li>
+
+    </ul>
+    </div>
+    <ul class="flex-container heading ">
+        <li class='p-2'>
+            <button type="button" class="btn btn-outline-success">Save and schedule irrigation</button>
+        </li>
+        <li class='p-2'>
+            <button type="button" class="btn btn-outline-success">Start irrigation</button>
+        </li>
+        <li class='p-2'>
+            <button type="button" class="btn btn-outline-success">Stop irrigation</button>
+        </li>
+    </ul>
+</div>
+
+{% endblock body%}

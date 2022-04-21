@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title%}Real-time Monitoring{% endblock title%}
+{% block body %}
+{% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+<div class="ml-5 mr-5">
+</br>
+</br>
+</br>
+    <h1> Sensor's data </h1>
+    <br/>
+                <Table bordered hover class='table'>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>parameters</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            
+                            <td rowspan="4">meteorological data</td>
+                            <td>temperature</td>
+                            <td>98</td>
+                            <td>78</td>
+                            <td>88</td>
+                            <td>87</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td>humidity</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>day duration</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>wind velocity</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">sensor data</td>
+                            <td>air humidity</td>
+                            <td>98</td>
+                            <td>78</td>
+                            <td>88</td>
+                            <td>87</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td>air temperature</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>soil moisture</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>soil humidity</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>soil temperature</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>UV</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+
+                    </tbody>
+                </Table> 
+                
+</div>
+
+{% endblock body%}
